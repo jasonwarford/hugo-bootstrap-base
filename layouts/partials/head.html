@@ -1,0 +1,24 @@
+<head>
+    <meta charset="utf-8">
+	<title>{{ .Title }}</title>
+
+	{{ "<!-- mobile responsive meta -->" | safeHTML }}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+	{{ with site.Params.author }}
+	<meta name="author" content="{{ . }}">{{ end }}
+	{{ hugo.Generator }}
+
+	{{ "<!-- plugins -->" | safeHTML }}
+	{{ range site.Params.plugins.css }}
+	<link rel="stylesheet" type="text/css" href="{{ .link | absURL }}">
+	{{ end }}
+
+	{{ $style := resources.Get "css/style.css" | minify | fingerprint "sha256" }}
+	<link rel="stylesheet" type="text/css" href="{{ $style.Permalink | relURL }}" media="screen">
+
+  	{{"<!-- Custom stylesheet - for your changes -->" |safeHTML}}
+  	<link rel="stylesheet" type="text/css" href="{{ `css/custom.css` | relURL}}" media="screen">
+
+	
+</head>

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ .Site.BaseURL | relURL }}">
+        {{ if site.Params.logo }}
+        <img data-src="{{ site.Params.logo | absURL }}" alt="{{ .Site.Title }}" height="42">
+        {{ else }}
+        {{ site.Title }}
+        {{ end }}
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        {{ range site.Menus.main }}
+            <a class="nav-item nav-link" href="{{ site.BaseURL | relURL }} }}#{{ .URL }}">{{ .Name }}</a>
+		{{ end }}
+      </div>
+    </div>
+  </nav>
